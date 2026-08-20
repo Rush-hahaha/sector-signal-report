@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>环境自适应信号分析 — 2026-08-18</title>
+<title>板块信号分析</title>
 <style>
 :root{--bg:#0d1117;--bg2:#161b22;--ink:#e6edf3;--muted:#8b949e;--rule:#30363d;--accent:#22c55e;--accent2:#f97316;--red:#ef4444;--blue:#3b82f6}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -41,7 +41,7 @@ tbody tr:hover{background:var(--bg2)}
 <body>
 <div class="container">
 <h1>板块信号分析</h1>
-<div class="subtitle">2026-08-18 · 先判环境，再选最优信号 · 命中率目标 ≥ 60%</div>
+<div class="subtitle" id="subtitle">先判环境，再选最优信号 · 命中率目标 ≥ 60%</div>
 
 <div class="kpi-grid" id="kpiGrid"></div>
 
@@ -69,6 +69,7 @@ function pct(v){return v>=0?'+'+v.toFixed(1)+'%':v.toFixed(1)+'%'}
 
 fetch('./env_signal_report.json').then(function(r){return r.json()}).then(function(d){
   var m=d.market, s=d.signal, all=d.all_sectors;
+  document.getElementById('subtitle').textContent = d.date + ' · 先判环境，再选最优信号 · 命中率目标 ≥ 60%';
 
   // KPI：只保留市场环境、20日收益、20日振幅
   var html='';
